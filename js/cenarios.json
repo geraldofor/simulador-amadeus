@@ -1,0 +1,148 @@
+[
+  {
+    "id": 1,
+    "companhia": "AA",
+    "nome_missao": "Missão 1: American Airlines - Conexão Miami",
+    "descricao": "Criação de PNR para Miami (MIA) exigindo a nova resolução IATA 830d de blindagem anti-ADM.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Consulte a disponibilidade de voos de São Paulo (GRU) para Miami (MIA) para o dia 15 de Outubro.",
+        "comando_gabarito": "AN15OCTGRUMIA",
+        "erro_feedback": "Use o comando AN + DATA + ROTA. Exemplo: AN15OCTGRUMIA."
+      },
+      {
+        "passo": 2,
+        "instrucao": "Venda 1 assento na classe econômica 'Y' na linha 1 do voo da American Airlines.",
+        "comando_gabarito": "SS1Y1",
+        "erro_feedback": "Use o comando SS + QUANTIDADE + CLASSE + LINHA. Exemplo: SS1Y1."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Insira o nome do passageiro adulto: PEDRO SILVA.",
+        "comando_gabarito": "NM1SILVA/PEDRO MR",
+        "erro_feedback": "O formato padrão do Amadeus é NM1SOBRENOME/NOME TRATAMENTO. Use: NM1SILVA/PEDRO MR."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Regra IATA 830d: Insira o celular do passageiro (11 99999-8888) para notificações da Cia Aérea (SRCTCM).",
+        "comando_gabarito": "SRCTCM-11999998888/P1",
+        "erro_feedback": "Formato incorreto. Para celular do cliente use o código de serviço: SRCTCM-DDDNUMERO/P1."
+      },
+      {
+        "passo": 5,
+        "instrucao": "Regra IATA 830d: Insira o e-mail do passageiro (pedro.silva@gmail.com). Lembre-se de substituir a @ por //.",
+        "comando_gabarito": "SRCTCE-PEDRO.SILVA//GMAIL.COM/P1",
+        "erro_feedback": "No Amadeus o e-mail usa a tag SRCTCE e substitui a '@' por '//'. Use: SRCTCE-PEDRO.SILVA//GMAIL.COM/P1"
+      },
+      {
+        "passo": 6,
+        "instrucao": "Insira o elemento de recebido (Assinatura) com o seu nome e finalize a reserva salvando os dados.",
+        "comando_gabarito": "RF PEDRO",
+        "erro_feedback": "Assine primeiro com o comando RF + SEU NOME antes de fechar."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "companhia": "UA",
+    "nome_missao": "Missão 2: United Airlines - Secure Flight Houston",
+    "descricao": "Inserção obrigatória de dados de segurança governamental americana (Secure Flight / APIS).",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Consulte a disponibilidade do Rio de Janeiro (GIG) para Houston (IAH) no dia 22 de Novembro.",
+        "comando_gabarito": "AN22NOVGIGIAH",
+        "erro_feedback": "Digite a consulta correta: AN22NOVGIGIAH."
+      },
+      {
+        "passo": 2,
+        "instrucao": "Prenda 1 assento na classe executiva 'C' na linha 2.",
+        "comando_gabarito": "SS1C2",
+        "erro_feedback": "Use o comando SS1C2 para efetuar a venda do assento."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Insira o nome da passageira: MARIA SOUZA.",
+        "comando_gabarito": "NM1SOUZA/MARIA MRS",
+        "erro_feedback": "Use o formato padrão: NM1SOUZA/MARIA MRS."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Secure Flight: Insira a data de nascimento e gênero da passageira (15 de Outubro de 1990, Feminino) no padrão SRDOCS da United.",
+        "comando_gabarito": "SRDOCS-HK1-----15OCT90-F--SOUZA-MARIA/P1",
+        "erro_feedback": "Atenção à sintaxe do Secure Flight! O formato deve ser: SRDOCS-HK1-----15OCT90-F--SOUZA-MARIA/P1"
+      },
+      {
+        "passo": 5,
+        "instrucao": "Insira o FOID da passageira utilizando o RG 11222333.",
+        "comando_gabarito": "SRFOID-NI11222333/P1",
+        "erro_feedback": "O FOID de documento nacional usa NI. Comando correto: SRFOID-NI11222333/P1"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "companhia": "TP",
+    "nome_missao": "Missão 3: TAP Air Portugal - Rota Lisboa com Criança",
+    "descricao": "Criação de reserva múltipla incluindo passageiro infantil (CHD) e tratamento de contato de agência.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Consulte a malha aérea de Salvador (SSA) para Lisboa (LIS) no dia 05 de Dezembro.",
+        "comando_gabarito": "AN05DECSSALIS",
+        "erro_feedback": "Comando obrigatório: AN05DECSSALIS."
+      },
+      {
+        "passo": 2,
+        "instrucao": "Efetue a venda de 2 assentos na classe econômica 'K' da linha 1.",
+        "comando_gabarito": "SS2K1",
+        "erro_feedback": "Como são dois passageiros, use a quantidade 2: SS2K1."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Insira o passageiro adulto CARLOS REIS e o filho infantil LUIS REIS (Criança de 5 anos).",
+        "comando_gabarito": "NM2REIS/CARLOS MR(CHD/05MAR21)/LUIS MSTR",
+        "erro_feedback": "Para reservas de família com CHD no mesmo sobrenome, use a estrutura agrupada do Amadeus."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Insira o e-mail de contato corporativo da sua própria Agência (viagens//agencia.com.br).",
+        "comando_gabarito": "APE-VIAGENS//AGENCIA.COM.BR",
+        "erro_feedback": "Para e-mail da agência use o comando APE- seguido do endereço trocando a @ por //."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "companhia": "IB",
+    "nome_missao": "Missão 4: Iberia - Destino Madrid Corporativo",
+    "descricao": "Fluxo técnico focado em emissão corporativa e inclusão de documento de identidade internacional.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Abra a disponibilidade de São Paulo (GRU) para Madrid (MAD) no dia 10 de Outubro.",
+        "comando_gabarito": "AN10OCTGRUMAD",
+        "erro_feedback": "Use o comando técnico padrão: AN10OCTGRUMAD."
+      },
+      {
+        "passo": 2,
+        "instrucao": "Venda 1 lugar na classe econômica 'Q' da linha 3 da Iberia.",
+        "comando_gabarito": "SS1Q3",
+        "erro_feedback": "Comando para prender a vaga: SS1Q3."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Insira o nome do passageiro: ROBERTO MENDES.",
+        "comando_gabarito": "NM1MENDES/ROBERTO MR",
+        "erro_feedback": "Formato: NM1MENDES/ROBERTO MR."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Insira o passaporte do passageiro (Passaporte número FL998877 expedido no Brasil) como elemento FOID mandatário.",
+        "comando_gabarito": "SRFOID-PPBRFL998877/P1",
+        "erro_feedback": "Para FOID de passaporte internacional, use PP + código do país emissor + número: SRFOID-PPBRFL998877/P1"
+      }
+    ]
+  }
+]

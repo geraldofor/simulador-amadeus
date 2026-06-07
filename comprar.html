@@ -2,18 +2,337 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Curso e Simulador Amadeus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amadeus Training Simulator - Curso de Emissão</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Cores baseadas na Sandboard e identidade de aviação */
+        :root {
+            --bg-main: #0b110e;
+            --bg-card: #121b17;
+            --accent-green: #2c5e43;
+            --lime-light: #deff9a;
+            --text-light: #f5f5f5;
+            --text-muted: #9fbaaa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header / Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px #5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--lime-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; margin: 30px auto; }
+            .hero-badge { margin: 0 auto; }
+        }
+
+        .hero-badge {
+            background-color: rgba(222, 255, 154, 0.1);
+            border: 1px solid var(--lime-light);
+            color: var(--lime-light);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: var(--lime-light);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Painel Visual / Mockup Simulador */
+        .mockup-sandboard {
+            background-color: var(--bg-card);
+            border: 3px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(159, 186, 170, 0.2);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: var(--lime-light);
+        }
+
+        .terminal-body {
+            font-family: monospace;
+            background-color: #050807;
+            padding: 15px;
+            border-radius: 8px;
+            color: #7fff7f;
+            font-size: 15px;
+            min-height: 180px;
+        }
+
+        /* Seção das 3 Etapas */
+        .etapas-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--lime-light);
+        }
+
+        .grid-etapas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-etapas { grid-template-columns: 1fr; }
+        }
+
+        .card-etapa {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(44, 94, 67, 0.4);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+
+        .card-etapa:hover {
+            transform: translateY(-5px);
+            border-color: var(--lime-light);
+        }
+
+        .card-etapa i {
+            font-size: 32px;
+            color: var(--lime-light);
+            margin-bottom: 20px;
+        }
+
+        .card-etapa h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .card-etapa p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* Pricing / Checkout Section */
+        .pricing {
+            background: linear-gradient(180deg, var(--bg-main) 0%, #060a08 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .pricing-box {
+            background-color: var(--bg-card);
+            border: 2px solid var(--lime-light);
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .price {
+            font-size: 56px;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-light);
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .features-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .features-list i {
+            color: var(--lime-light);
+        }
+
+        .btn-pix {
+            display: block;
+            background-color: var(--lime-light);
+            color: #000;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 18px;
+            transition: background 0.2s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-pix:hover {
+            background-color: #c9eb82;
+        }
+
+        .pix-modal-info {
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
 </head>
 <body>
-    <h1>Domine o Amadeus - Curso em 3 Etapas</h1>
-    <p>Aprenda Reserva, Tarifa e Emissão na prática com nosso simulador de tela preta.</p>
-    <div id="pix-area">
-        <p>Valor: R$ [Seu Preço Atraente]</p>
-        <p>Chave Pix: [Sua Chave Aqui]</p>
-        <a href="mailto:seu-email@gmail.com?subject=Confirmacao%20Pix%20Amadeus&body=Ola,%20fiz%20o%20Pix.%20Meu%20email%20de%20acesso%20e:%20">
-            <button>Já fiz o Pix, avisar administrador</button>
-        </a>
-    </div>
-</body>
-</html>
 
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-plane-departure"></i> AMADEUS SIMULATOR
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <div class="hero-badge">TURMA 1A - STATUS: ATIVO</div>
+            <h1>Crie memória muscular no <span>Amadeus</span> sem riscos.</h1>
+            <p>O único SaaS com ambiente prático repetitivo focado 100% nos comandos exigidos hoje no mercado de consolidadoras e companhias aéreas.</p>
+        </div>
+        
+        <div class="mockup-sandboard">
+            <div class="terminal-header">
+                <span><i class="fa-solid fa-terminal"></i> GDS_TRAINING_MODE</span>
+                <span>ONLINE</span>
+            </div>
+            <div class="terminal-body">
+                > AN20JUNGRUFOR<br>
+                <span style="color: var(--text-muted);">1 LA 3410 Y9 B9 M9 GRUFOR 0815 1140</span><br>
+                <span style="color: var(--text-muted);">2 G3 1622 Y4 B2 M1 GRUFOR 1420 1745</span><br>
+                ><br>
+                > NM1MARTINS/ANA MRS<br>
+                <span style="color: var(--lime-light);">* TUTOR: Nome registrado com sucesso! *</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="etapas-container">
+        <h2 class="section-title">Treinamento em <span>3 Etapas Fundamentais</span></h2>
+        <div class="grid-etapas">
+            <div class="card-etapa">
+                <i class="fa-solid fa-address-card"></i>
+                <h3>1. Reserva</h3>
+                <p>Mapeamento completo dos comandos atuais de criação de PNR. Pratique sequências mandatórias até fixar os elementos exigidos.</p>
+            </div>
+            <div class="card-etapa">
+                <i class="fa-solid fa-layer-group"></i>
+                <h3>2. Tarifa</h3>
+                <p>Domine a divisão de famílias de cabine (Light, Plus, Top) aplicadas pelas companhias e garanta cálculos de precificação precisos.</p>
+            </div>
+            <div class="card-etapa">
+                <i class="fa-solid fa-ticket-simple"></i>
+                <h3>3. Emissão</h3>
+                <p>Cenários dedicados a rotinas reais de emissão e reciclagem ágil para quem quer ingressar ou se atualizar no setor.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <h2 class="section-title">Acesso Vitalício ao <span>Ambiente Dedicado</span></h2>
+        <div class="pricing-box">
+            <h3>Plano Prático Profissional</h3>
+            <div class="price">R$ 97<span> / taxa única</span></div>
+            
+            <ul class="features-list">
+                <li><i class="fa-solid fa-check"></i> Simulador interativo com "Tela Preta" GDS</li>
+                <li><i class="fa-solid fa-check"></i> Explicações de erros em tempo real via Tutor</li>
+                <li><i class="fa-solid fa-check"></i> Segurança por IP dedicada para o seu usuário</li>
+                <li><i class="fa-solid fa-check"></i> Exercícios ilimitados para repetição</li>
+            </ul>
+
+            <a href="mailto:seu-email@gmail.com?subject=Solicitacao%20de%20Acesso%20-%20Simulador%20Amadeus&body=Ola!%20Realizei%20o%20Pix%20para%20o%20curso.%20Meu%20email%20para%20liberacao%20no%20painel%20e:%20" class="btn-pix">
+                <i class="fa-solid fa-envelope"></i> Já fiz o Pix, avisar administrador
+            </a>
+            
+            <p class="pix-modal-info">A chave Pix e instruções de pagamento serão enviadas para você, ou adicione os dados da sua conta para depósito aqui.</p>
+        </div>
+    </section>
+
+</body>
+    </html>
+    

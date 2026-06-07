@@ -247,7 +247,7 @@
         "passo": 4,
         "instrucao": "Dispare o comando final de emissão para gerar os números dos e-tickets e finalizar o circuito com a TAP.",
         "comando_gabarito": "TTP/TKT",
-        "erro_feedback": "O comando final "mágico" para imprimir e emitir os bilhetes válidos no TST é: TTP/TKT."
+        "erro_feedback": "O comando final 'mágico' para imprimir e emitir os bilhetes válidos no TST é: TTP/TKT."
       }
     ]
   },
@@ -321,6 +321,12 @@
     "nome_missao": "Missão 12: United Airlines - Emissão Híbrida/Mista (INV + Faturado)",
     "descricao": "Gestão financeira complexa dividindo o pagamento da reserva em parte faturada (tarifa) e parte à vista.",
     "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Configure a forma de pagamento de maneira híbrida: parte faturada em dinheiro (CASH) somada ao cartão Visa do cliente (4444555566667777, vencimento 12/29) para as taxas.",
+        "comando_gabarito": "FPCASH+CCVI4444555566667777/D1229",
+        "erro_feedback": "No Amadeus, separe as duas formas de pagamento usando o sinal de mais '+'. Use: FPCASH+CCVI4444555566667777/D1229"
+      },
       {
         "passo": 1,
         "instrucao": "Configure a forma de pagamento de maneira híbrida: parte faturada em dinheiro (CASH) somada ao cartão Visa do cliente (4444555566667777, vencimento 12/29) para as taxas.",

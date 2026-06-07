@@ -144,5 +144,207 @@
         "erro_feedback": "Para FOID de passaporte internacional, use PP + código do país emissor + número: SRFOID-PPBRFL998877/P1"
       }
     ]
+  },
+  {
+    "id": 5,
+    "companhia": "TP",
+    "nome_missao": "Missão 5: TAP - Hibridismo e Contaminação de Regras",
+    "descricao": "Análise de itinerário combinado com ida em classe Discount (O) e volta em Executive (J) usando FXY e FQF.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Use o comando de diagnóstico alternativo para verificar as opções de precificação combinada do itinerário atual.",
+        "comando_gabarito": "FXY",
+        "erro_feedback": "Para fazer o diagnóstico de tarifas combinadas sem criar o TST ainda, use o comando FXY."
+      },
+      {
+        "passo": 2,
+        "instrucao": "Abra a consulta de combinação de regras (Fare Quote Display por segmento) para checar as restrições dos trechos combinados.",
+        "comando_gabarito": "FQF",
+        "erro_feedback": "Use o comando FQF para verificar as regras de combinação e cruzamento das classes O e J."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "companhia": "AA",
+    "nome_missao": "Missão 6: American Airlines - O Poder do FXB vs FXY/K",
+    "descricao": "Forçar a busca pela menor tarifa de Main Cabin via FXB e garantir exclusão de Basic Economy com FXY/K.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Force o Amadeus a buscar a menor tarifa disponível rebookando automaticamente os segmentos para as classes promocionais.",
+        "comando_gabarito": "FXB",
+        "erro_feedback": "O comando padrão para buscar o menor preço com rebooking automático é o FXB."
+      },
+      {
+        "passo": 2,
+        "instrucao": "O cliente recusa a tarifa Basic Economy. Use o diagnóstico forçado para buscar opções exclusivas da família de cabine Main Cabin.",
+        "comando_gabarito": "FXY/KMC",
+        "erro_feedback": "Use o comando FXY/K seguido do código da família. Para Main Cabin na AA, use FXY/KMC."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "companhia": "UA",
+    "nome_missao": "Missão 7: United Airlines - Tarifamento Familiar (ADT + CHD + INF)",
+    "descricao": "Cálculo de TST combinado para uma família e verificação de descontos mandatórios de menores.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Efetue o tarifamento da reserva atual guardando os registros de TST separados para o Adulto, a Criança (CHD) e o Bebê (INF).",
+        "comando_gabarito": "FXP",
+        "erro_feedback": "Para calcular e guardar os TSTs mantendo as classes atuais da reserva familiar, use o comando FXP."
+      },
+      {
+        "passo": 2,
+        "instrucao": "Abra as notas tarifárias do TST número 1 (Adulto) para verificar as regras gerais aplicadas pelo sistema.",
+        "comando_gabarito": "FQN1",
+        "erro_feedback": "Para ler as notas de um TST específico, use FQN seguido do número do TST. Exemplo: FQN1."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "companhia": "IB",
+    "nome_missao": "Missão 8: Iberia - Caça às Penalidades no FQN",
+    "descricao": "Uso de atalhos do comando FQN para leitura direta de multas de reembolso e alterações no bilhete internacional.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Tarife a reserva mantendo as classes e acesse direto o parágrafo de penalidades (PE) das notas tarifárias para checar valores de ADM.",
+        "comando_gabarito": "FQN//PE",
+        "erro_feedback": "O atalho técnico para pular direto para a seção de penalidades sem ler o índice inteiro é FQN//PE."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "companhia": "TP",
+    "nome_missao": "Missão 9: TAP - Emissão Faturada à Vista (Cash/INV)",
+    "descricao": "Inserção de elemento de faturamento corporativo padrão seguido do fluxo mandatório de disparo de e-ticket.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Defina a forma de pagamento da reserva como Faturado/Cash à vista para a consolidadora.",
+        "comando_gabarito": "FPCASH",
+        "erro_feedback": "Para indicar pagamento em dinheiro ou faturado direto no Amadeus, use o comando: FPCASH."
+      },
+      {
+        "passo": 2,
+        "instrucao": "Insira a assinatura com o seu nome para autorizar a modificação financeira da reserva.",
+        "comando_gabarito": "RF PEDRO",
+        "erro_feedback": "Antes de emitir, assine o PNR usando o comando RF + SEU NOME."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Execute o comando de salvamento definitivo para registrar o elemento financeiro no arquivo antes da impressão.",
+        "comando_gabarito": "ER",
+        "erro_feedback": "Use o comando ER para salvar e atualizar os registros do PNR."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Dispare o comando final de emissão para gerar os números dos e-tickets e finalizar o circuito com a TAP.",
+        "comando_gabarito": "TTP/TKT",
+        "erro_feedback": "O comando final "mágico" para imprimir e emitir os bilhetes válidos no TST é: TTP/TKT."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "companhia": "AA",
+    "nome_missao": "Missão 10: American Airlines - Cartão de Crédito à Vista",
+    "descricao": "Processamento de pagamento direto à companhia aérea em uma única parcela utilizando cartão Mastercard internacional.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Insira o pagamento em cartão Mastercard (Número 5555444433332222, Vencimento 12/29) para liquidação à vista direto com a AA.",
+        "comando_gabarito": "FPCCMC5555444433332222/D1229",
+        "erro_feedback": "Formato: FPCC + BANDEIRA(MC) + NUMERO + /D + VALIDADE(MMYY). Use: FPCCMC5555444433332222/D1229"
+      },
+      {
+        "passo": 2,
+        "instrucao": "Assine a inclusão do cartão de crédito do cliente no sistema.",
+        "comando_gabarito": "RF PEDRO",
+        "erro_feedback": "Assine com o comando obrigatório de segurança: RF PEDRO."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Salve e processe as atualizações da reserva.",
+        "comando_gabarito": "ER",
+        "erro_feedback": "Sempre salve as alterações financeiras digitando: ER."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Efetue o comando de disparo final para gerar o bilhete eletrônico faturado no cartão.",
+        "comando_gabarito": "TTP/TKT",
+        "erro_feedback": "Dispare a emissão definitiva do e-ticket usando o comando técnico: TTP/TKT."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "companhia": "IB",
+    "nome_missao": "Missão 11: Iberia - Cartão de Crédito Parcelado (Regra Brasil)",
+    "descricao": "Inclusão de elemento de pagamento parcelado direto no GDS utilizando tags de parcelamento mercantil em 5 vezes.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Insira o cartão Visa do passageiro (Número 4444555566667777, Vencimento 10/28) aplicando o parcelamento direto em 5 parcelas sem juros.",
+        "comando_gabarito": "FPCCVI4444555566667777/D1028*5",
+        "erro_feedback": "Para parcelar no Amadeus, adicione o asterisco seguido do número de parcelas no fim. Use: FPCCVI4444555566667777/D1028*5"
+      },
+      {
+        "passo": 2,
+        "instrucao": "Insira a assinatura do responsável para validar a transação parcelada.",
+        "comando_gabarito": "RF PEDRO",
+        "erro_feedback": "Valide as informações assinando com: RF PEDRO."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Salve o PNR atualizando o status das formas de pagamento.",
+        "comando_gabarito": "ER",
+        "erro_feedback": "Efetue o salvamento obrigatório digitando: ER."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Finalize o circuito realizando a emissão e geração do localizador de bilhete para a Iberia.",
+        "comando_gabarito": "TTP/TKT",
+        "erro_feedback": "Para rodar a impressão final dos bilhetes parcelados use: TTP/TKT."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "companhia": "UA",
+    "nome_missao": "Missão 12: United Airlines - Emissão Híbrida/Mista (INV + Faturado)",
+    "descricao": "Gestão financeira complexa dividindo o pagamento da reserva em parte faturada (tarifa) e parte à vista.",
+    "passos": [
+      {
+        "passo": 1,
+        "instrucao": "Configure a forma de pagamento de maneira híbrida: parte faturada em dinheiro (CASH) somada ao cartão Visa do cliente (4444555566667777, vencimento 12/29) para as taxas.",
+        "comando_gabarito": "FPCASH+CCVI4444555566667777/D1229",
+        "erro_feedback": "No Amadeus, separe as duas formas de pagamento usando o sinal de mais '+'. Use: FPCASH+CCVI4444555566667777/D1229"
+      },
+      {
+        "passo": 2,
+        "instrucao": "Insira a assinatura mandatória da agência antes de rodar o comando de impressão de e-ticket.",
+        "comando_gabarito": "RF PEDRO",
+        "erro_feedback": "Insira a assinatura digitando: RF PEDRO."
+      },
+      {
+        "passo": 3,
+        "instrucao": "Salve os dados híbridos processados no arquivo da United.",
+        "comando_gabarito": "ER",
+        "erro_feedback": "Garante o salvamento enviando o comando técnico: ER."
+      },
+      {
+        "passo": 4,
+        "instrucao": "Execute o disparo definitivo para finalizar o curso e emitir a passagem com sucesso na modalidade mista.",
+        "comando_gabarito": "TTP/TKT",
+        "erro_feedback": "Comando final absoluto para emitir a passagem híbrida: TTP/TKT."
+      }
+    ]
   }
 ]

@@ -41,7 +41,6 @@ function inicializarMissao(index) {
     elMissaoStatus.innerText = "Módulo 1: Reservas";
     elTituloMissao.innerText = missao.nome_missao;
     
-    // Injeta o Briefing/Ordem de serviço na descrição lateral
     elDescMissao.innerHTML = missao.briefing || missao.descricao;
     
     elBtnProxima.style.display = "none";
@@ -58,7 +57,7 @@ function atualizarPasso() {
     elInstrucaoPasso.innerText = passo.instrucao;
     
     if (passoAtualIndex === 0) {
-        elAmadeusScreen.innerHTML = `AMADEUS GDS TERMINAL - AMBIENTE DE TREINAMENTO\nREADY FOR COMMANDS.\n\n[Digite o primeiro comando baseado na O.S. ao lado]`;
+        elAmadeusScreen.innerHTML = `AMADEUS GDS TERMINAL - AMBIENTE DE TREINAMENTO\nREADY FOR COMMANDS.\n\n[Consulte a disponibilidade de voos baseando-se na O.S. ao lado]`;
     }
 }
 
@@ -75,7 +74,6 @@ function processarComando(comando) {
     const passo = missao.passos[passoAtualIndex];
     let acertou = false;
 
-    // Se for o passo de assinatura (RF), valida se começa com RF
     if (passo.is_regex) {
         if (comando.startsWith("RF ") && comando.length > 3) {
             acertou = true;
@@ -85,11 +83,20 @@ function processarComando(comando) {
     }
     
     if (acertou) {
-        elFeedbackAjuda.innerHTML = "<span style='color: #00ff00;'>✔ Comando aceito.</span>";
-        let telaAtual = elAmadeusScreen.innerHTML;
-        if (passoAtualIndex === 0) telaAtual = `AMADEUS GDS TERMINAL (${missao.companhia})`;
+        elFeedbackAjuda.innerHTML = "<span style='color: #00ff00;'>✔ Comando executado com sucesso.</span>";
         
-        elAmadeusScreen.innerHTML = `${telaAtual}\n> ${comando}\nOK - PROCESSED.`;
+        let telaAtual = elAmadeusScreen.innerHTML;
+        // Limpa a tela preta no primeiro comando ou no comando final (ER) para dar realismo técnico
+        if (passoAtualIndex === 0 || passo.comando_gabarito === "ER") {
+            elAmadeusScreen.innerHTML = passo.resposta_terminal;
+        } else if (passo.is_regex) {
+            // Caso seja a assinatura, exibe dinamicamente o comando que o aluno usou
+            elAmadeusScreen.innerHTML = `${telaAtual}\n\n> ${comando}\nOK`;
+        } else {
+            // Junta a resposta clássica no histórico do terminal
+            elAmadeusScreen.innerHTML = `${telaAtual}\n\n${passo.resposta_terminal}`;
+        }
+        
         passoAtualIndex++;
         elInputComando.value = "";
         
@@ -99,15 +106,12 @@ function processarComando(comando) {
                 atualizarPasso();
             }, 800);
         } else {
-            // FIM DA RESERVA - Gera Localizador e exibe aviso legal
-            elAmadeusScreen.innerHTML += `\n\nRP/GRUUU2202/GRUUU2202            AA/AN  07JUN26\n1.SILVA/PEDRO MR\n\n** PNR CRIADO COM SUCESSO - LOCALIZADOR: R9X2WZ **\n\n--------------------------------------------------\n⚠️ AVISO DE COMPLIANCE:\nESTA RESERVA É FICTÍCIA, OPERADA EM AMBIENTE DE TESTE.\nNÃO POSSUI PODER DE COMERCIALIZAÇÃO OU EMISSÃO REAL.\n--------------------------------------------------`;
-            elFeedbackAjuda.innerHTML = "<span style='color: #00ff00; font-weight: bold;'>🎉 Reserva Finalizada com sucesso!</span>";
             elInputComando.disabled = true;
             elBtnProxima.style.display = "block";
         }
     } else {
         elFeedbackAjuda.innerText = `❌ ${passo.erro_feedback}`;
-        elAmadeusScreen.innerHTML += `\n> ${comando}\nREJECTED - CHECK FORMAT`;
+        elAmadeusScreen.innerHTML += `\n\n> ${comando}\nREJECTED - CHECK FORMAT`;
         elInputComando.value = "";
     }
     elAmadeusScreen.scrollTop = elAmadeusScreen.scrollHeight;

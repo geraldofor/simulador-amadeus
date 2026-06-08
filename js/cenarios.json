@@ -10,48 +10,56 @@
         "passo": 1,
         "instrucao": "Consulte a disponibilidade de voos GRU para MIA no dia 15 de Outubro.",
         "comando_gabarito": "AN15OCTGRUMIA",
+        "resposta_terminal": "AN15OCTGRUMIA\nAN 15OCT GRUMIA          *AMADEUS AVAILABILITY* 15OCT26\n 1   AA 930  Y 15OCT GRUMIA HK1  2115 0545+1 *iE          \n 2   AA 906  Y 15OCT GRUMIA HK1  2300 0730+1 *iE          ",
         "erro_feedback": "Use o comando AN + DATA + ROTA. Exemplo: AN15OCTGRUMIA."
       },
       {
         "passo": 2,
         "instrucao": "Venda 1 assento na classe econômica 'Y' na linha 1.",
         "comando_gabarito": "SS1Y1",
+        "resposta_terminal": "SS1Y1\n01 AA 930 Y 15OCT GRUMIA HK1   2115 0545+1  *iE*",
         "erro_feedback": "Use o comando de venda física: SS1Y1."
       },
       {
         "passo": 3,
         "instrucao": "Insira o nome do passageiro PEDRO SILVA.",
         "comando_gabarito": "NM1SILVA/PEDRO MR",
+        "resposta_terminal": "NM1SILVA/PEDRO MR\n1.1SILVA/PEDRO MR",
         "erro_feedback": "Use o formato padrão: NM1SILVA/PEDRO MR."
       },
       {
         "passo": 4,
         "instrucao": "Insira o contato telefônico corporativo da agência (Xique Xique Turismo).",
         "comando_gabarito": "AP GRU 11 33332222 XIQUE XIQUE TURISMO A/C AGT",
+        "resposta_terminal": "AP GRU 11 33332222 XIQUE XIQUE TURISMO A/C AGT\nAP GRU 11 33332222 XIQUE XIQUE TURISMO A/C AGT",
         "erro_feedback": "Digite exatamente: AP GRU 11 33332222 XIQUE XIQUE TURISMO A/C AGT"
       },
       {
         "passo": 5,
         "instrucao": "Insira o contato telefônico do passageiro Pedro Silva no PNR.",
         "comando_gabarito": "AP GRU 11 999998888 A/C PEDRO SILVA",
+        "resposta_terminal": "AP GRU 11 999998888 A/C PEDRO SILVA\nAP GRU 11 999998888 A/C PEDRO SILVA",
         "erro_feedback": "Digite exatamente: AP GRU 11 999998888 A/C PEDRO SILVA"
       },
       {
         "passo": 6,
         "instrucao": "Insira o Time Limit (Prazo limite de emissão) para 10 de Agosto às 12:00.",
         "comando_gabarito": "TKXL 10AUG/1200",
+        "resposta_terminal": "TKXL 10AUG/1200\nOK - OPU TIMELIMIT SEGMENT ADDED",
         "erro_feedback": "Use o formato padrão de prazo: TKXL 10AUG/1200"
       },
       {
         "passo": 7,
         "instrucao": "Regra IATA 830d: Insira o celular regulamentar do passageiro para notificações da Cia (SRCTCM).",
         "comando_gabarito": "SRCTCM-11999998888/P1",
+        "resposta_terminal": "SRCTCM-11999998888/P1\nOK - SSR SERVICE REQ PROCESSED BY AA",
         "erro_feedback": "Formato do celular regulamentar: SRCTCM-11999998888/P1"
       },
       {
         "passo": 8,
         "instrucao": "Regra IATA 830d: Insira o e-mail regulamentar do passageiro substituindo a @ por //.",
         "comando_gabarito": "SRCTCE-PEDRO.SILVA//GMAIL.COM/P1",
+        "resposta_terminal": "SRCTCE-PEDRO.SILVA//GMAIL.COM/P1\nOK - SSR SERVICE REQ PROCESSED BY AA",
         "erro_feedback": "Formato do e-mail regulamentar: SRCTCE-PEDRO.SILVA//GMAIL.COM/P1"
       },
       {
@@ -59,12 +67,14 @@
         "instrucao": "Assine o recebido da reserva com o seu nome (Ex: RF SEUNOME).",
         "comando_gabarito": "RF ",
         "is_regex": true,
+        "resposta_terminal": "RF AGENTE\nOK",
         "erro_feedback": "Inicie com 'RF ' seguido do seu nome ou assinatura."
       },
       {
         "passo": 10,
         "instrucao": "Finalize a criação do PNR salvando e encerrando os dados no banco.",
         "comando_gabarito": "ER",
+        "resposta_terminal": "ER\nRP/GRUUU2202/GRUUU2202            AA/AN  07JUN26\n1.SILVA/PEDRO MR\n2 AA 930 Y 15OCT GRUMIA HK1  2115 0545+1 \n3 AP GRU 11 33332222 XIQUE XIQUE TURISMO A/C AGT\n4 AP GRU 11 999998888 A/C PEDRO SILVA\n5 TK XL 10AUG/1200\n6 SSR CTCM AA HK1/11999998888/P1\n7 SSR CTCE AA HK1/PEDRO.SILVA//GMAIL.COM/P1\n\n** PNR CRIADO COM SUCESSO - LOCALIZADOR: R9X2WZ **\n\n--------------------------------------------------\n⚠️ AVISO DE COMPLIANCE:\nESTA RESERVA É FICTÍCIA, OPERADA EM AMBIENTE DE TESTE.\nNÃO POSSUI PODER DE COMERCIALIZAÇÃO OU EMISSÃO REAL.\n--------------------------------------------------",
         "erro_feedback": "Para salvar e encerrar a transação use o comando: ER"
       }
     ]

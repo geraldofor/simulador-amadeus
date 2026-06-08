@@ -18,6 +18,9 @@
         }
         header {
             margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .container {
             display: flex;
@@ -79,16 +82,19 @@
             outline: none;
             text-transform: uppercase;
         }
-        .btn-avancar {
+        .btn-acao {
             background-color: #00ff00;
             color: #000;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            margin-top: 15px;
-            display: none;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-acao:hover {
+            background-color: #00cc00;
         }
         .badge {
             background-color: #444;
@@ -97,27 +103,90 @@
             font-size: 12px;
             font-weight: bold;
         }
+        /* Tela de Boas-Vindas Didática (Sobreposição) */
+        .boas-vindas-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 15, 15, 0.98);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .boas-vindas-card {
+            background-color: #252525;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            border: 1px solid #444;
+        }
+        .boas-vindas-card h1 {
+            color: #00ff00;
+            margin-top: 0;
+            font-size: 28px;
+        }
+        .boas-vindas-card p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .recursos-lista {
+            margin: 20px 0;
+            padding-left: 20px;
+            color: #e0e0e0;
+        }
+        .recursos-lista li {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h2>Simulador Avançado GDS Amadeus</h2>
-        <div style="display: flex; gap: 10px; align-items: center;">
-            <span class="badge" id="missao-cia">Cia: --</span>
-            <span class="badge" id="missao-status">Módulo: Carregando...</span>
+    <div class="boas-vindas-overlay" id="welcome-screen">
+        <div class="boas-vindas-card">
+            <h1>Seja bem-vindo ao Simulador Amadeus Avançado</h1>
+            <p>Este ambiente foi desenvolvido especificamente para capacitar você na criação, tarifamento e emissão de bilhetes aéreos internacionais sob as regras rígidas de <strong>Blindagem Anti-ADM</strong>.</p>
+            
+            <p>No mercado consolidador real, um único caractere errado ou a ausência de uma tag obrigatória de segurança (como a Resolução IATA 830d) pode resultar em multas pesadas emitidas pelas companhias aéreas. Aqui, você aprenderá a trabalhar com segurança.</p>
+            
+            <p><strong>Como vai funcionar o seu treinamento:</strong></p>
+            <ul class="recursos-lista">
+                <li>📋 <strong>Ordens de Serviço:</strong> À esquerda da tela, você receberá chamados reais enviados por clientes corporativos e agências.</li>
+                <li>⌨️ <strong>Terminal Interativo:</strong> À direita, você utilizará a linha de comandos real do Amadeus para executar as ações.</li>
+                <li>🛠️ <strong>Validação em Tempo Real:</strong> O sistema analisará a sua sintaxe técnica e dará feedbacks imediatos em caso de erro.</li>
+            </ul>
+            
+            <div style="text-align: right; margin-top: 30px;">
+                <button class="btn-acao" onclick="iniciarTreinamento()">Acessar Terminal e Iniciar ➔</button>
+            </div>
         </div>
+    </div>
+
+    <header>
+        <div>
+            <h2 style="margin: 0 0 5px 0;">Simulador Avançado GDS Amadeus</h2>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span class="badge" id="missao-cia">Cia: --</span>
+                <span class="badge" id="missao-status">Módulo: Carregando...</span>
+            </div>
+        </div>
+        <div style="font-size: 14px; color: #888;">Ambiente de Treinamento Corporativo</div>
     </header>
 
     <div class="container">
         <div class="painel-missao">
             <h3 id="titulo-missao">Carregando missão...</h3>
-            <p id="desc-missao">Aguarde o carregamento do banco de dados.</p>
-            <hr style="border-color: #444;">
-            <h4>🎯 Instrução Atual:</h4>
-            <p id="instrucao-passo" style="font-size: 18px; color: #ffcc00; font-weight: bold;">Siga as instruções do terminal.</p>
-            <div id="feedback-ajuda" style="color: #ff6666; margin-top: 15px; font-style: italic;"></div>
-            <button class="btn-avancar" id="btn-proxima-missao" onclick="proximaMissao()">Ir para Próxima Missão ➡️</button>
+            <div id="desc-missao">Aguarde o carregamento do banco de dados.</div>
+            <hr style="border-color: #444; margin: 20px 0;">
+            <h4 style="margin-top: 0; color: #00ff00;">🎯 Instrução do Passo Atual:</h4>
+            <p id="instrucao-passo" style="font-size: 16px; color: #ffcc00; font-weight: bold; margin-bottom: 20px;">Siga as instruções do terminal.</p>
+            <div id="feedback-ajuda" style="font-size: 14px; margin-top: 15px; min-height: 20px;"></div>
+            <button class="btn-acao" id="btn-proxima-missao" style="display: none; width: 100%; margin-top: 20px;" onclick="proximaMissao()">Ir para Próxima Missão ➔</button>
         </div>
 
         <div class="terminal-container">
@@ -134,5 +203,12 @@ AGUARDANDO INICIALIZAÇÃO DO MOTOR LÓGICO...
     </div>
 
     <script src="js/motor.js"></script>
+    <script>
+        // Função de controle da interface didática de introdução
+        function iniciarTreinamento() {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('input-comando').focus();
+        }
+    </script>
 </body>
 </html>
